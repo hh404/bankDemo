@@ -1,0 +1,89 @@
+:root {
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --ios-bg: #f2f2f7;
+  --ios-group: #ffffff;
+  --ios-separator: rgba(60, 60, 67, 0.12);
+  --ios-label: #3c3c43;
+  --ios-label-secondary: rgba(60, 60, 67, 0.6);
+  --ios-link: #007aff;
+  --ios-red: #ff3b30;
+  --ios-green: #34c759;
+  --ios-orange: #ff9500;
+  --radius: 12px;
+  --shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'SF Pro Text', 'Segoe UI', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background: var(--ios-bg);
+  color: var(--ios-label);
+  font-size: 17px;
+  line-height: 1.47;
+}
+
+/* iOS 风格列表组 */
+.ios-group {
+  background: var(--ios-group);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.ios-cell {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 44px;
+  padding: 12px 16px;
+  background: var(--ios-group);
+}
+
+.ios-cell:not(:last-child) {
+  border-bottom: 0.5px solid var(--ios-separator);
+}
+
+.ios-cell-label {
+  color: var(--ios-label);
+  font-weight: 500;
+}
+
+.ios-cell-value {
+  color: var(--ios-label-secondary);
+  font-size: 15px;
+}
+
+.ios-cell-chevron {
+  color: var(--ios-label-secondary);
+  font-size: 14px;
+  margin-left: 8px;
+}
+
+/* 安全区域 */
+.ios-safe-top {
+  padding-top: max(12px, var(--safe-top));
+}
+
+.ios-safe-bottom {
+  padding-bottom: max(24px, var(--safe-bottom));
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+input, select {
+  font-family: inherit;
+  font-size: inherit;
+}

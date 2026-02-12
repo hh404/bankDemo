@@ -1,0 +1,24 @@
+# Dependencies
+node_modules
+
+# Build
+dist
+*.tsbuildinfo
+vite.config.js
+vite.config.d.ts
+
+# Local
+.DS_Store
+*.local
+.env
+.env.*
+
+# Logs
+*.log
+npm-debug.log*
+
+# Editor
+.idea
+.vscode
+*.swp
+*.swo
