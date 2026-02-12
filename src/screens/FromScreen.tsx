@@ -122,9 +122,18 @@ export function FromScreen() {
           >
             Open an account
           </button>
-          <p style={{ fontSize: 13, color: 'var(--ios-label-secondary)', marginTop: 16 }}>
-            Demo: add <code style={{ background: 'var(--ios-bg)', padding: '2px 6px', borderRadius: 4 }}>?from=empty</code> to URL to see this state.
-          </p>
+          <button
+            type="button"
+            onClick={() => navigate('/transfer/from')}
+            style={{
+              marginTop: 16,
+              color: 'var(--ios-link)',
+              fontSize: 14,
+              textDecoration: 'underline',
+            }}
+          >
+            Demo: Show accounts again
+          </button>
         </div>
       </Layout>
     )
@@ -184,6 +193,18 @@ export function FromScreen() {
       <p style={{ fontSize: 13, color: 'var(--ios-label-secondary)', marginTop: 16 }}>
         INFT transfers are instant. Limits are set per account.
       </p>
+      <button
+        type="button"
+        onClick={() => navigate('/transfer/from?from=empty')}
+        style={{
+          marginTop: 24,
+          color: 'var(--ios-label-secondary)',
+          fontSize: 14,
+          textDecoration: 'underline',
+        }}
+      >
+        Demo: View empty state (no accounts)
+      </button>
     </Layout>
   )
 }
