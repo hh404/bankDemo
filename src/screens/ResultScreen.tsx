@@ -47,7 +47,7 @@ export function ResultScreen() {
       await downloadElementAsImage(wrapper, {
         filename: receiptFilename('INFT_Screen'),
         scale: 2,
-        backgroundColor: 'var(--ios-bg)',
+        backgroundColor: '#f2f2f7',
       })
     }
   }

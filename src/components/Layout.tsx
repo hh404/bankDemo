@@ -1,6 +1,8 @@
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { downloadElementAsImage, receiptFilename } from '../utils/downloadImage'
+
+const LAYOUT_BG = '#f2f2f7'
 
 interface LayoutProps {
   title: string
@@ -14,14 +16,23 @@ interface LayoutProps {
 export function Layout({ title, children, showBack = true, rightAction, allowScreenshot }: LayoutProps) {
   const navigate = useNavigate()
   const layoutRef = useRef<HTMLDivElement>(null)
+  const [screenshotBusy, setScreenshotBusy] = useState(false)
 
   const handleDownloadScreen = async () => {
-    if (layoutRef.current) {
-      await downloadElementAsImage(layoutRef.current, {
+    const el = layoutRef.current
+    if (!el || screenshotBusy) return
+    setScreenshotBusy(true)
+    try {
+      await downloadElementAsImage(el, {
         filename: receiptFilename('Screen'),
         scale: 2,
-        backgroundColor: 'var(--ios-bg)',
+        backgroundColor: LAYOUT_BG,
       })
+    } catch (e) {
+      console.error('Screenshot failed:', e)
+      alert('Screenshot failed. Please try again.')
+    } finally {
+      setScreenshotBusy(false)
     }
   }
 
@@ -88,10 +99,11 @@ export function Layout({ title, children, showBack = true, rightAction, allowScr
             <button
               type="button"
               onClick={handleDownloadScreen}
-              style={{ color: 'var(--ios-link)', fontSize: 15 }}
+              disabled={screenshotBusy}
+              style={{ color: screenshotBusy ? 'var(--ios-label-secondary)' : 'var(--ios-link)', fontSize: 15 }}
               title="Download screen"
             >
-              Screenshot
+              {screenshotBusy ? '…' : 'Screenshot'}
             </button>
           )}
           {rightAction}
